@@ -1,13 +1,14 @@
 import React from "react";
+import styles from "./Card.module.css";
 
 export default function Card(props) {
    return (
-      <div>
-         <button onClick={props.onClose}>X</button>
-         <h2>{props.name}</h2>
-         <h2>{props.species}</h2>
-         <h2>{props.gender}</h2>
-         <img  src={props.image} alt="" />
+      <div className={styles.rickCard}>
+         <button onClick={props.onClose} className={styles.close}>X</button>
+         <h2 className={styles.infoName}>{props.name}</h2>
+         <h2 className={styles.infoSpecies}>{props.species}</h2>
+         <h2 className={styles.infoGender}>{props.gender}</h2>
+         <img  src={props.image} alt="" className={styles.rickImg} />
       </div>
    );
 }

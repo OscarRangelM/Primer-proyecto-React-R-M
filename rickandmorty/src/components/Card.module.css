@@ -1,0 +1,54 @@
+.rickCard{
+    border: 1px solid green;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    align-items: center;
+    position: relative;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 5px #fff;
+    margin: 10px 0;
+    height: 400px;
+}
+
+.close{
+    color: #fff;
+    background-color: red;
+    border-radius: 5px;
+    padding: 0 10px;
+    font-size: larger;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+
+.infoName{
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    position: absolute;
+    left: 10px;
+    bottom: 55px;
+    z-index: 100;
+}
+
+.rickImg{
+    position: relative;
+    top: -107px;
+}
+
+.infoSpecies{
+    position: relative;
+    top: 335px;
+    left: 50px;
+    z-index: 20;
+    font-weight: 400;
+}
+
+.infoGender{
+    z-index: 20;
+    position: relative;
+    top: 262px;
+    right: 65px;
+    font-weight: 400;
+}
