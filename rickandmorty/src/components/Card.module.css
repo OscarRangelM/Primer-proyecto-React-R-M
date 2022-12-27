@@ -34,21 +34,23 @@
 
 .rickImg{
     position: relative;
-    top: -107px;
+    top: -77px;
 }
 
 .infoSpecies{
     position: relative;
-    top: 335px;
-    left: 50px;
+    top: 337px;
+    left: 75px;
     z-index: 20;
     font-weight: 400;
+    font-size:large;
 }
 
 .infoGender{
     z-index: 20;
     position: relative;
-    top: 262px;
+    top: 282px;
     right: 65px;
     font-weight: 400;
+    font-size:large;
 }
