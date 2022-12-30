@@ -1,7 +1,11 @@
 import './App.css';
 import Cards from './components/Cards.jsx';
 import NavBar from './components/Nav.jsx';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import About from "./components/About.jsx";
+import Detail from "./components/Detail.jsx";
+import Form from './components/Form.jsx';
 
 
 function App() {
@@ -12,31 +16,43 @@ function App() {
     fetch(`https://rickandmortyapi.com/api/character/${id}`) // Pide el personaje con el id que ingresamos
       .then((response) => response.json())
       .then((data) => {
-         if (data.name) {
-          let exist = characters.find((e)=> e.id === data.id); // De esta maner hacemos la comparación
-          if(exist){ // Si el personaje se repite lo indicamos en un alert y si no continuamos con el proceso.
+        if (data.name) {
+          let exist = characters.find((e) => e.id === data.id); // De esta maner hacemos la comparación
+          if (exist) { // Si el personaje se repite lo indicamos en un alert y si no continuamos con el proceso.
             alert(`Ese personaje ya esta en pantalla`)
-          }else{
+          } else {
             setCharacters((oldChars) => [...oldChars, data]);
           }
-         } else {
-            window.alert('No hay personajes con ese ID');
-         }
+        } else {
+          window.alert('No hay personajes con ese ID');
+        }
       });
   }
 
-  function onClose(id){
-    setCharacters((data)=>{
-      return data.filter((e)=> e.id !== id);
-    } )
+  function onClose(id) {
+    setCharacters((data) => {
+      return data.filter((e) => e.id !== id);
+    })
   }
+
+  let location = useLocation();
+
+  useEffect(()=>{
+    // Aqui desaparecemos de alguna manera el nav... Pendiente.
+
+  }, [location.pathname]); // El segundo parametro parece que tiene que ser un array
+
 
   return (
     <div className='App' style={{ padding: '25px' }}>
       <NavBar onSearch={onSearch} />
-      <div className='container'>
-        <Cards characters={characters} onClose={onClose}/>
-      </div>
+      <Routes>
+        <Route path="/" element={<Form />}></Route>
+        
+        <Route path="/home" element={<Cards characters={characters} onClose={onClose} />}></Route>
+        <Route path="/about" element={<About />}></Route>
+        <Route path="/detail/:detailId" element={<Detail />}></Route>
+      </Routes>
     </div>
   )
 }
