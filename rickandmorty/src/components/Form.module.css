@@ -1,0 +1,53 @@
+.divForm{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80vw;
+    margin: 0 auto;
+    height: 90vh;
+    background: rgb(30, 30, 63, 0.25);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    box-shadow: 0px 0px 5px 0px rgb(144, 238, 144);
+    border-radius: 50px
+}
+
+.form{
+    display: flex;
+    height: 70%;
+    width: 70%;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: larger;
+    text-transform: uppercase;
+}
+
+.inputEmail, .inputPassword{
+    height: 30px;
+    width: 190px;
+    border: none;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.inputEmail{
+    margin-bottom: 70px;
+}
+
+.inputPassword{
+    margin-bottom: 40px;
+}
+
+.buttonSubmit{
+    border: none;
+    border-radius: 2px;
+    height: 25px;
+    width: 100px;
+    box-shadow: 2px 2px 3px black;
+}
+
+.buttonSubmit:active{
+    box-shadow: none;
+}

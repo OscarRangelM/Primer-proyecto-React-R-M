@@ -2,7 +2,7 @@ import './App.css';
 import Cards from './components/Cards.jsx';
 import NavBar from './components/Nav.jsx';
 import { useState, useEffect } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import About from "./components/About.jsx";
 import Detail from "./components/Detail.jsx";
 import Form from './components/Form.jsx';
@@ -36,19 +36,31 @@ function App() {
   }
 
   let location = useLocation();
+  const navigate = useNavigate();
 
-  useEffect(()=>{
-    // Aqui desaparecemos de alguna manera el nav... Pendiente.
+  const [access, setAccess] = useState(false);
 
-  }, [location.pathname]); // El segundo parametro parece que tiene que ser un array
+  const username = "oscar@algo.com";
+  const password = "Password01";
 
+  function login(userData) {
+    if (userData.username === username && userData.password === password) {
+      setAccess(true);
+      navigate('/home');
+    }
+  }
+
+  useEffect(() => {
+    !access && navigate('/');
+ }, [access]);
 
   return (
     <div className='App' style={{ padding: '25px' }}>
-      <NavBar onSearch={onSearch} />
+      {location.pathname === "/" ? null : <NavBar onSearch={onSearch} />}
+      {/* Usamos un ternario para que cuando estemos en el login no se vea el navBar */}
       <Routes>
-        <Route path="/" element={<Form />}></Route>
-        
+        <Route path="/" element={<Form login={login} />}></Route>
+
         <Route path="/home" element={<Cards characters={characters} onClose={onClose} />}></Route>
         <Route path="/about" element={<About />}></Route>
         <Route path="/detail/:detailId" element={<Detail />}></Route>
