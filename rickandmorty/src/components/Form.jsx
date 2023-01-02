@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Form.module.css";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { validation } from "./validation.js";
 
 export default function Form(props) {
@@ -15,7 +15,7 @@ export default function Form(props) {
         password: ''
     });
 
-    function HandleChange(e) {
+    function handleChange(e) {
         setErrors(
             validation({
                 ...userData,
@@ -36,30 +36,30 @@ export default function Form(props) {
 
     return (
         <div className={styles.divForm}>
-            <form className={styles.form} onSubmit={handleSubmit}>
+            <form className={styles.form} onSubmit={((e)=>{handleSubmit(e)})}>
                 <label htmlFor="username">Username:</label>
                 <input
                     name="username"
-                    type=""
+                    type="text"
                     placeholder="Escribe tu username aqui..."
                     className={styles.inputEmail}
-                    onChange={HandleChange}
+                    onChange={handleChange} // Este es de los atributos mas importes del input
                     value={userData.username}
                 />
-                <p>{errors.username && errors.username}</p>
+                <p className={styles.messageError} >{errors.username && errors.username}</p>
                 <label htmlFor="password">Password:</label>
                 <input
                     name="password"
                     type="password"
                     placeholder="Aqui va tu contraseña :)"
                     className={styles.inputPassword}
-                    onChange={HandleChange}
+                    onChange={handleChange}
                     value={userData.password}
                 />
-                <p>{errors.password && errors.password}</p>
-                <Link to="./home">
+                <p className={styles.messageError} >{errors.password && errors.password}</p>
+                {/* <Link to="./home"> */}
                     <button type="submit" className={styles.buttonSubmit}>LOGIN</button>
-                </Link>
+                {/* </Link> */}
             </form>
         </div>
     );

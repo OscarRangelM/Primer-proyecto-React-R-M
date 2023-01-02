@@ -1,8 +1,10 @@
 import './App.css';
 import Cards from './components/Cards.jsx';
 import NavBar from './components/Nav.jsx';
-import { useState, useEffect } from 'react';
-import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import About from "./components/About.jsx";
 import Detail from "./components/Detail.jsx";
 import Form from './components/Form.jsx';
@@ -36,23 +38,22 @@ function App() {
   }
 
   let location = useLocation();
-  const navigate = useNavigate();
 
   const [access, setAccess] = useState(false);
-
   const username = "oscar@algo.com";
   const password = "Password01";
+  const navigate = useNavigate();
 
   function login(userData) {
-    if (userData.username === username && userData.password === password) {
+    if (userData.password === password && userData.username === username) {
       setAccess(true);
       navigate('/home');
+      // alert("Funciona...");
     }
   }
-
   useEffect(() => {
     !access && navigate('/');
- }, [access]);
+  }, [access]);
 
   return (
     <div className='App' style={{ padding: '25px' }}>
@@ -60,7 +61,6 @@ function App() {
       {/* Usamos un ternario para que cuando estemos en el login no se vea el navBar */}
       <Routes>
         <Route path="/" element={<Form login={login} />}></Route>
-
         <Route path="/home" element={<Cards characters={characters} onClose={onClose} />}></Route>
         <Route path="/about" element={<About />}></Route>
         <Route path="/detail/:detailId" element={<Detail />}></Route>
