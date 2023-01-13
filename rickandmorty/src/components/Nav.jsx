@@ -13,6 +13,9 @@ export default function NavBar(props) { // Por medio de props podemos utilizar l
                 <NavLink to="/about">
                     <button className={styles.buttonAbout}>About</button>
                 </NavLink>
+                <NavLink to='/favorites' >
+                    <button className={styles.buttonAbout}>Favorites</button>
+                </NavLink>
             </div>
             <SearchBar onSearch={props.onSearch} />
         </div>

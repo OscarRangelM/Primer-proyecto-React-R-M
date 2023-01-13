@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import About from "./components/About.jsx";
 import Detail from "./components/Detail.jsx";
 import Form from './components/Form.jsx';
+import Favorites from './components/favorites/Favorites.jsx'
 
 
 function App() {
@@ -63,6 +64,7 @@ function App() {
         <Route path="/" element={<Form login={login} />}></Route>
         <Route path="/home" element={<Cards characters={characters} onClose={onClose} />}></Route>
         <Route path="/about" element={<About />}></Route>
+        <Route path="/favorites" element = {<Favorites characters={characters} />} />
         <Route path="/detail/:detailId" element={<Detail />}></Route>
       </Routes>
     </div>
