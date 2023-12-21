@@ -28,20 +28,24 @@ export function Card(props) {
 
    return (
       <div className={styles.rickCard}>
-         {
-            isFav ? (
-               <button onClick={handleFavorite}>❤️</button>
-            ) : (
-               <button onClick={handleFavorite}>🤍</button>
-            )
-         }
-         <button onClick={props.onClose} className={styles.close}>X</button>
-         <Link to={`/detail/${props.id}`}>
-            <h2 className={styles.infoName}>{props.name}</h2>
-         </Link>
-         <h2 className={styles.infoSpecies}>Specie: {props.species}</h2>
-         <h2 className={styles.infoGender}>Gender: {props.gender}</h2>
+         <div className={styles.buttonsFavDel}>
+            {
+               isFav ? (
+                  <button className={styles.buttonHeart} onClick={handleFavorite}>❤️</button>
+               ) : (
+                  <button className={styles.buttonHeart} onClick={handleFavorite}>🤍</button>
+               )
+            }
+            <button onClick={props.onClose} className={styles.close}>X</button>
+         </div>
          <img src={props.image} alt="" className={styles.rickImg} />
+         <div className={styles.infoCharacter}>
+            <Link to={`/detail/${props.id}`}>
+               <h2 className={styles.infoName}>{props.name}</h2>
+            </Link>
+            <h2 className={styles.infoSpecies}>Specie: {props.species}</h2>
+            <h2 className={styles.infoGender}>Gender: {props.gender}</h2>
+         </div>
       </div>
    );
 }
@@ -53,8 +57,8 @@ export function mapDispatchToProps(dispatch) {
    }
 }
 
-export function mapStateToProps(state){
-   return{
+export function mapStateToProps(state) {
+   return {
       myFavorites: state.myFavorites,
    }
 }
